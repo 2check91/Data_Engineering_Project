@@ -4,7 +4,7 @@ Agenda
 
 Introduction
 
-5 Ss
+5 Ss (stream store structure synthesize show)
 
 Architecture Diagram
 
