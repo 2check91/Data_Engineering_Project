@@ -1,0 +1,36 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+require 'vagrant-aws'
+
+require 'yaml'
+
+cred = YAML.load_file(ENV['HOME'] + '/.aws/aws_api_cred.yml')
+
+Vagrant.configure("2") do |config|
+  # The most common configuration options are documented and commented below.
+  # For a complete reference, please see the online documentation at
+  # https://docs.vagrantup.com.
+  config.vm.box = 'dummy'
+
+  config.vm.provision :shell, path: "bootstrap_ec2.sh"
+
+  config.vm.provider 'aws' do |aws, override|
+    # Read AWS authentication information from environment variables
+    aws.access_key_id = cred['aws']['aws_access_key_id']
+    aws.secret_access_key = cred['aws']['aws_secret_access_key']
+
+    # Specify SSH keypair to use
+    aws.keypair_name = '*********'
+
+    # Specify region, AMI ID, and security group(s)
+    aws.region = 'us-east-1'
+    aws.ami = 'ami-f4cc1de2'
+    aws.instance_type = 't2.micro'
+    aws.security_groups = ['launch-wizard-1']
+
+    # Specify username and private key path
+    override.ssh.username = 'ubuntu'
+    override.ssh.private_key_path = '*********.pem'
+  end
+end
+  

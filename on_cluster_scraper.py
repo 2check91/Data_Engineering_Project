@@ -1,0 +1,1 @@
+scrapy crawl glassdoor /home/ubuntu/scrapy/
