@@ -25,3 +25,7 @@ Minimal maintenance:
 Debuggability:
 
 Future development
+
+Link to my static website: 
+
+http://thewebsitebucket.s3-website-us-east-1.amazonaws.com/
